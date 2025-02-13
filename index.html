@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta untuk Rani Handini</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #fffbe0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 2px solid #d4a373;
+        }
+
+        h1 {
+            color: #ff6f61;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #333333;
+            text-align: left;
+        }
+
+        .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-style: italic;
+            color: #555555;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            transition: all 0.5s ease;
+        }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .full-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            font-size: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            background-color: #ff6f61;
+            color: white;
+            text-align: center;
+        }
+
+        .love-logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 3em;
+            color: red;
+            z-index: 999;
+        }
+
+        /* Animasi Love */
+        .love {
+            position: fixed;
+            color: red;
+            font-size: 24px;
+            animation: floatUp 3s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="love-logo">❤️</div>
+        <h1>Surat Cinta untuk Rani Handini</h1>
+        <p>Rani Handini yang tersayang,</p>
+        <p>
+            Pertama-tama, aku ingin mengungkapkan betapa berartinya dirimu bagiku. Setiap hari yang kuhabiskan bersamamu adalah anugerah yang tak ternilai harganya. Senyummu, tawamu, dan segala kebaikan hatimu membuatku merasa menjadi orang yang paling beruntung di dunia ini.
+        </p>
+        <p>
+            Aku mencintaimu lebih dari kata-kata yang bisa kuungkapkan. Kamu adalah segalanya bagiku, mau kah kamu memberi kesempatan untukku?
+        </p>
+        <div class="buttons">
+            <button id="yesBtn" class="btn" onclick="yesClicked()">Mau</button>
+            <button id="noBtn" class="btn" onclick="noClicked()">Tidak Mau</button>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+
+        function noClicked() {
+            noClickCount++;
+            let yesBtn = document.getElementById("yesBtn");
+
+            if (noClickCount < 4) {
+                yesBtn.style.fontSize = (1.2 + noClickCount * 0.5) + "em";
+            } else {
+                yesBtn.style.position = "fixed";
+                yesBtn.style.top = "0";
+                yesBtn.style.left = "0";
+                yesBtn.style.width = "100vw";
+                yesBtn.style.height = "100vh";
+                yesBtn.style.fontSize = "3em";
+                yesBtn.style.zIndex = "9999";
+            }
+        }
+
+        function yesClicked() {
+            document.body.innerHTML = `
+                <div class="full-screen">
+                    <p> Aku tau kamu bakal mau ❤️</p>
+                    <img src="1.jpeg" alt="Foto" style="max-width: 80%; margin-top: 20px;" />
+                </div>
+            `;
+            spawnLoves();
+        }
+
+        function spawnLoves() {
+            let duration = 3000; // 3 detik
+            let interval = setInterval(() => {
+                let love = document.createElement("div");
+                love.innerHTML = "❤️";
+                love.classList.add("love");
+                love.style.left = Math.random() * 100 + "vw";
+                love.style.top = "100vh";
+                love.style.fontSize = Math.random() * 30 + 20 + "px";
+                document.body.appendChild(love);
+
+                setTimeout(() => {
+                    love.remove();
+                }, 3000);
+            }, 200);
+
+            setTimeout(() => {
+                clearInterval(interval);
+            }, duration);
+        }
+
+        // Animasi love muncul pas halaman dibuka
+        window.onload = function () {
+            spawnLoves();
+        };
+    </script>
+</body>
+</html>
